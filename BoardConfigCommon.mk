@@ -180,3 +180,8 @@ ifeq ($(HOST_OS),linux)
   endif
 endif
 
+# ART optimization
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.image-dex2oat-filter=everything \
+    dalvik.vm.dex2oat-filter=everything
+
