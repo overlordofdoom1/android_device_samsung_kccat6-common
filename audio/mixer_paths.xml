@@ -338,33 +338,6 @@
 		<path name="deep-buffer-playback" />
 	</path>
 
-	<!-- low latency -->
-	<path name="low-latency-playback">
-		<ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia5" value="1" />
-	</path>
-
-	<path name="low-latency-playback hdmi">
-		<ctl name="HDMI Mixer MultiMedia5" value="1" />
-	</path>
-
-	<path name="low-latency-playback speaker-and-hdmi">
-		<path name="low-latency-playback hdmi" />
-		<path name="low-latency-playback" />
-	</path>
-
-	<path name="low-latency-playback bt-sco">
-		<ctl name="AUX_PCM_RX Audio Mixer MultiMedia5" value="1" />
-	</path>
-
-	<!-- low latency -->
-	<path name="jam-framework-playback">
-		<ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia10" value="1" />
-	</path>
-
-	<path name="jam-framework-capture">
-		<ctl name="MultiMedia10 Mixer SLIM_0_TX" value="1" />
-	</path>
-
 	<!-- tunnel -->
 	<path name="compress-offload-playback">
 		<ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia4" value="1" />
