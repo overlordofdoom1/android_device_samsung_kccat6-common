@@ -24,7 +24,7 @@ TARGET_CPU_VARIANT := krait
 
 # Compiler
 # L1/L2 cache size parameters by @JustArchi
-BOARD_GLOBAL_CFLAGS := --param l1-cache-size=16 --param l1-cache-line-size=16 --param l2-cache-size=2048
+BOARD_GLOBAL_CFLAGS := --param l1-cache-size=64 --param l1-cache-line-size=64 --param l2-cache-size=3072
 
 # External apps on SD
 TARGET_EXTERNAL_APPS = sdcard1
