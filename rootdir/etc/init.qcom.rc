@@ -1494,6 +1494,11 @@ on property:sys.boot_completed=1
     # msm hotplug settings
     stop mpdecision
     write /sys/module/msm_hotplug/msm_enabled 1
+    write /sys/module/msm_hotplug/min_cpus_online 1
+    write /sys/module/msm_hotplug/down_lock_duration 500
+    write /sys/module/msm_hotplug/boost_lock_duration 2500
+    write /sys/module/msm_hotplug/update_rates "200 5:100 50:50 350:200"
+    write /sys/module/msm_hotplug/fast_lane_load 100
 
     # - enabled USB forced fast charge
     write /sys/kernel/fast_charge/force_fast_charge 1
