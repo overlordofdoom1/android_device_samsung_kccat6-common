@@ -1489,11 +1489,18 @@ on property:sys.boot_completed=1
     # Set CPU max & min. frequency hardlimit
     write /sys/kernel/cpufreq_hardlimit/scaling_max_freq_screen_on 3091200
     write /sys/kernel/cpufreq_hardlimit/scaling_min_freq_screen_on 268800
-    write /sys/kernel/cpufreq_hardlimit/scaling_max_freq_screen_off 883200
+    write /sys/kernel/cpufreq_hardlimit/scaling_max_freq_screen_off 2265600
 
     # msm hotplug settings
     stop mpdecision
     write /sys/module/msm_hotplug/msm_enabled 1
+
+    # - enabled USB forced fast charge
+    write /sys/kernel/fast_charge/force_fast_charge 1
+
+    # - Disable dynamic deferred file sync (by faux123)
+    #     Fsync synchronises writes normally (slower, but safer).
+    write /sys/kernel/dyn_fsync/Dyn_fsync_active 1
 
     setprop ro.qualcomm.perf.cores_online 2
 
