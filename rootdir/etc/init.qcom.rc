@@ -1487,7 +1487,7 @@ on property:sys.boot_completed=1
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 300000
 
     # Set CPU max & min. frequency hardlimit
-    write /sys/kernel/cpufreq_hardlimit/scaling_max_freq_screen_on 3091200
+    write /sys/kernel/cpufreq_hardlimit/scaling_max_freq_screen_on 3072000
     write /sys/kernel/cpufreq_hardlimit/scaling_min_freq_screen_on 268800
     write /sys/kernel/cpufreq_hardlimit/scaling_max_freq_screen_off 2265600
 
