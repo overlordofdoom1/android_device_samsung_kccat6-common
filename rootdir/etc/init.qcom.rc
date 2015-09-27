@@ -407,6 +407,9 @@ on property:ro.debuggable=1
     chown system camera /sys/class/flash/flash/flash_power
     chmod 660 /sys/class/flash/flash/flash_power
 
+    # zion959 kernel config permissions
+    chmod 0700 /system/etc/init.zion959.kernel.sh
+
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
@@ -1527,27 +1530,6 @@ on property:sys.boot_completed=1
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 300000
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 300000
 
-    # Set CPU max & min. frequency hardlimit
-    write /sys/kernel/cpufreq_hardlimit/scaling_max_freq_screen_on 3072000
-    write /sys/kernel/cpufreq_hardlimit/scaling_min_freq_screen_on 268800
-    write /sys/kernel/cpufreq_hardlimit/scaling_max_freq_screen_off 2265600
-
-    # msm hotplug settings
-    stop mpdecision
-    write /sys/module/msm_hotplug/msm_enabled 1
-    write /sys/module/msm_hotplug/min_cpus_online 1
-    write /sys/module/msm_hotplug/down_lock_duration 500
-    write /sys/module/msm_hotplug/boost_lock_duration 2500
-    write /sys/module/msm_hotplug/update_rates "200 5:100 50:50 350:200"
-    write /sys/module/msm_hotplug/fast_lane_load 100
-
-    # - enabled USB forced fast charge
-    write /sys/kernel/fast_charge/force_fast_charge 1
-
-    # - Disable dynamic deferred file sync (by faux123)
-    #     Fsync synchronises writes normally (slower, but safer).
-    write /sys/kernel/dyn_fsync/Dyn_fsync_active 1
-
     setprop ro.qualcomm.perf.cores_online 2
 
     #Set Mode Change Condition
@@ -1718,4 +1700,11 @@ on charger
     write /sys/module/msm_pm/modes/cpu0/standalone_power_collapse/suspend_enabled 1
     write /sys/module/msm_pm/modes/cpu0/standalone_power_collapse/idle_enabled 1
     write /sys/module/msm_pm/modes/cpu0/retention/idle_enabled 1
+
+# Start zion959 kernel configuration
+service zion959-kernel /system/bin/sh /system/etc/init.zion959.kernel.sh
+     class late_start
+     user root
+     group root
+     oneshot
 
