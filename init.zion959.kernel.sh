@@ -50,14 +50,14 @@ echo 0 > /sys/kernel/cpufreq_hardlimit/userspace_dvfs_lock
 echo `date +"%F %R:%S : Userspace DVFS access set to ignore."` >>$log_file
 
 # Set CPU Governor
-echo "impulse" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 echo 1 > /sys/devices/system/cpu/cpu1/online
-echo "impulse" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
+echo "interactive" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
 echo 1 > /sys/devices/system/cpu/cpu2/online
-echo "impulse" > /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor
+echo "interactive" > /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor
 echo 1 > /sys/devices/system/cpu/cpu3/online
-echo "impulse" > /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor
-echo `date +"%F %R:%S : CPU governor set to impulse."` >>$log_file
+echo "interactive" > /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor
+echo `date +"%F %R:%S : CPU governor set to interactive."` >>$log_file
 restorecon_recursive /sys/devices/system/cpu/cpufreq
 echo `date +"%F %R:%S : Restore SELinux context for CPU governor."` >>$log_file
 
@@ -115,44 +115,45 @@ echo 1 > /sys/devices/system/cpu/cpu3/online
 echo 300000 > /sys/devices/system/cpu/cpu3/cpufreq/cpuinfo_min_freq
 echo 2649600 > /sys/devices/system/cpu/cpu3/cpufreq/cpuinfo_max_freq
 echo `date +"%F %R:%S : CPU min / max reset (thanx mpdecision for the mess)."` >>$log_file
-echo 1 > /sys/kernel/intelli_plug/intelli_plug_active
-echo 0 > /sys/kernel/intelli_plug/touch_boost_active
-echo `date +"%F %R:%S : CPU Hotplug driver set to IntelliPlug."` >>$log_file
+#echo 1 > /sys/kernel/intelli_plug/intelli_plug_active
+#echo 0 > /sys/kernel/intelli_plug/touch_boost_active
+#echo `date +"%F %R:%S : CPU Hotplug driver set to IntelliPlug."` >>$log_file
 
 # Set CPU Hotplug driver
-echo 2 > /sys/kernel/intelli_plug/nr_run_profile_sel
-echo `date +"%F %R:%S : IntelliPlug Profile set to Conservative."` >>$log_file
+#echo 2 > /sys/kernel/intelli_plug/nr_run_profile_sel
+#echo `date +"%F %R:%S : IntelliPlug Profile set to Conservative."` >>$log_file
 
 # Set CPU Hotplug driver
-echo 4 > /sys/kernel/intelli_plug/nr_run_hysteresis
-echo `date +"%F %R:%S : IntelliPlug Hysteresis set to fast (4)."` >>$log_file
+#echo 4 > /sys/kernel/intelli_plug/nr_run_hysteresis
+#echo `date +"%F %R:%S : IntelliPlug Hysteresis set to fast (4)."` >>$log_file
 
 # Set CPU Hotplug driver
-echo 3500 > /sys/kernel/intelli_plug/cpu_nr_run_threshold
-echo `date +"%F %R:%S : IntelliPlug Runqueue Threshold set to normal zombie (3500)."` >>$log_file
+#echo 3500 > /sys/kernel/intelli_plug/cpu_nr_run_threshold
+#echo `date +"%F %R:%S : IntelliPlug Runqueue Threshold set to normal zombie (3500)."` >>$log_file
 
 # msm hotplug settings
-#echo 1 > /sys/module/msm_hotplug/msm_enabled
-#echo 1 > /sys/module/msm_hotplug/min_cpus_online
-#echo 500 > /sys/module/msm_hotplug/down_lock_duration
-#echo 2500 > /sys/module/msm_hotplug/boost_lock_duration
-#echo "200 5:100 50:50 350:200" > /sys/module/msm_hotplug/update_rates 
-#echo 100 > /sys/module/msm_hotplug/fast_lane_load
+echo 1 > /sys/module/msm_hotplug/msm_enabled
+echo 1 > /sys/module/msm_hotplug/min_cpus_online
+echo 500 > /sys/module/msm_hotplug/down_lock_duration
+echo 2500 > /sys/module/msm_hotplug/boost_lock_duration
+echo "200 5:100 50:50 350:200" > /sys/module/msm_hotplug/update_rates 
+echo 100 > /sys/module/msm_hotplug/fast_lane_load
+echo `date +"%F %R:%S : CPU Hotplug driver set to Msm HotPlug."` >>$log_file
 
 # Set CPU Thermal driver
-stop thermal-engine
-echo 1 > /sys/module/msm_thermal/parameters/enabled
-echo 12 > /sys/module/msm_thermal/parameters/core_control_mask
-echo 15 > /sys/module/msm_thermal/parameters/freq_control_mask
-echo `date +"%F %R:%S : CPU Thermal driver set to IntelliThermal."` >>$log_file
+#stop thermal-engine
+#echo 1 > /sys/module/msm_thermal/parameters/enabled
+#echo 12 > /sys/module/msm_thermal/parameters/core_control_mask
+#echo 15 > /sys/module/msm_thermal/parameters/freq_control_mask
+#echo `date +"%F %R:%S : CPU Thermal driver set to IntelliThermal."` >>$log_file
 
 # Set CPU Thermal driver
-echo 80 > /sys/module/msm_thermal/parameters/limit_temp_degC
-echo `date +"%F %R:%S : IntelliThermal Frequency Throttle limit set to 80 degrees celcius."` >>$log_file
+#echo 80 > /sys/module/msm_thermal/parameters/limit_temp_degC
+#echo `date +"%F %R:%S : IntelliThermal Frequency Throttle limit set to 80 degrees celcius."` >>$log_file
 
 # Set CPU Thermal driver
-echo 85 > /sys/module/msm_thermal/parameters/core_limit_temp_degC
-echo `date +"%F %R:%S : IntelliThermal Core Throttle limit set to 85 degrees celcius."` >>$log_file
+#echo 85 > /sys/module/msm_thermal/parameters/core_limit_temp_degC
+#echo `date +"%F %R:%S : IntelliThermal Core Throttle limit set to 85 degrees celcius."` >>$log_file
 
 # This is now an option in the ROM under Other Sounds settings
 # - Vibrator strength
@@ -160,12 +161,12 @@ echo `date +"%F %R:%S : IntelliThermal Core Throttle limit set to 85 degrees cel
 #echo `date +"%F %R:%S : Vibrator strength set to normal (80)."` >>$log_file
 
 # d2tw values: 0:"Disabled", 1:"dt2w", 2:"dt2s"
-echo 1 > /sys/android_touch/doubletap2wake
-echo `date +"%F %R:%S : double tap to wake is enabled."` >>$log_file
+#echo 1 > /sys/android_touch/doubletap2wake
+#echo `date +"%F %R:%S : double tap to wake is enabled."` >>$log_file
 
 # Sweep2Wake values: 0:"Disabled", 1:"Sweep Right", 2:"Sweep Left", 4:"Sweep Up", 8:"Sweep Down"
-echo 1 > /sys/android_touch/sweep2wake
-echo `date +"%F %R:%S : sweep2wake is enabled."` >>$log_file
+#echo 1 > /sys/android_touch/sweep2wake
+#echo `date +"%F %R:%S : sweep2wake is enabled."` >>$log_file
 
 # Sweep2Sleep values: 0:"Disabled", 1:"Sweep Right", 2:"Sweep Left", 3:"Sweep Left or Right"
 #echo "0" > /sys/android_touch/sweep2sleep
