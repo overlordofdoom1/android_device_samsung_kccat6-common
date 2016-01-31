@@ -19,6 +19,10 @@
 
 LOCAL_PATH := device/samsung/trlte-common
 
+# Custom Toolchain
+TARGET_GCC_VERSION_AND := 4.9
+TARGET_GCC_VERSION_ARM := 4.9
+
 # Architecture
 TARGET_CPU_VARIANT := krait
 
