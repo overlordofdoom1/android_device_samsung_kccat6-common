@@ -1449,6 +1449,16 @@ service wifi-crda /system/bin/sh /system/etc/init.crda.sh
 on property:sys.boot_completed=1
     write /sys/block/mmcblk0/queue/scheduler fiops
 
+    write /sys/kernel/cpufreq_hardlimit/userspace_dvfs_lock 0
+
+    # Set CPU max & min. frequency hardlimit
+    write /sys/kernel/cpufreq_hardlimit/scaling_max_freq_screen_on 3091200
+    write /sys/kernel/cpufreq_hardlimit/scaling_min_freq_screen_on 268800
+    write /sys/kernel/cpufreq_hardlimit/scaling_max_freq_screen_off 2265600
+
+    # enabled USB forced fast charge
+    write /sys/kernel/fast_charge/force_fast_charge 1
+
     # Configure the hardware properly
     write /sys/module/lpm_levels/enable_low_power/l2 4
     write /sys/module/msm_pm/modes/cpu0/power_collapse/suspend_enabled 1
