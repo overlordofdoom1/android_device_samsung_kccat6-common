@@ -1603,7 +1603,10 @@ on property:sys.boot_completed=1
     chown system radio /sys/class/sec/sec_epen/boost_level
 
     # Post boot services
-    start mpdecision
+    #start mpdecision
+
+    # IntelliPlug
+    write /sys/kernel/intelli_plug/intelli_plug_active 1
 
 service hostapd /system/bin/hostapd -dddd /data/hostapd/hostapd.conf
     class late_start
